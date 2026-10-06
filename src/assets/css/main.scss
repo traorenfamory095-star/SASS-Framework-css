@@ -1,0 +1,185 @@
+
+// 1. VARIABLES
+
+$primary: #2563eb;
+$secondary: #7c3aed;
+
+$text-color: #1f2937;
+$background: #f3f4f6;
+
+$spacing: 1rem;
+$radius: 12px;
+
+
+// 2. MIXIN
+
+@mixin button($color) {
+  padding: 0.75rem 1.25rem;
+
+  color: white;
+  background-color: $color;
+
+  border: none;
+  border-radius: $radius;
+
+  cursor: pointer;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  transition: 0.3s ease;
+
+  &:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+  }
+}
+
+
+// 3. RESET / STYLES GÉNÉRAUX
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+
+  background-color: $background;
+  color: $text-color;
+
+  font-family: Arial, sans-serif;
+}
+
+button {
+  font-family: inherit;
+}
+
+
+// 4. CONTAINER
+
+.container {
+  width: min(90%, 1100px);
+
+  margin: 0 auto;
+  padding: 3rem 0;
+
+  h1 {
+    margin-bottom: 2rem;
+
+    text-align: center;
+
+    font-size: 2rem;
+  }
+}
+
+
+// 5. PROFILS
+
+.profiles {
+  display: flex;
+  flex-direction: column;
+
+  gap: $spacing;
+}
+
+
+// 6. PROFILE CARD
+
+.profile-card {
+  padding: 1.5rem;
+
+  background-color: white;
+
+  border-radius: $radius;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+  transition: 0.3s ease;
+
+
+  // Hover avec le nesting et &
+
+  &:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+
+
+  // Imbrication
+
+  &__content {
+
+    h2 {
+      margin-bottom: 0.5rem;
+
+      font-size: 1.5rem;
+    }
+
+
+    .profession {
+      display: inline-block;
+
+      margin-bottom: $spacing;
+
+      color: $primary;
+
+      font-weight: 600;
+    }
+
+
+    p {
+      margin-bottom: 1.5rem;
+
+      line-height: 1.6;
+    }
+
+
+    .button {
+      width: 100%;
+    }
+  }
+}
+
+
+// ========================================
+// 7. BOUTONS
+// ========================================
+
+.button-primary {
+  @include button($primary);
+}
+
+.button-secondary {
+  @include button($secondary);
+}
+
+
+// 8. RESPONSIVE
+
+@media (min-width: 768px) {
+
+  .profiles {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+
+  .profile-card {
+    flex: 1;
+
+    &__content {
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+
+      .button {
+        margin-top: auto;
+      }
+    }
+  }
+}
